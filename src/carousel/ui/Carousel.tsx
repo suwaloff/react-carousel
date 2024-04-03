@@ -1,7 +1,7 @@
 import { CSSProperties, useEffect, useState } from 'react';
-import { CarouselItem, Direction } from './types';
-import { Arrows } from './controls/arrows/Arrows';
-import { ItemList } from './itemList/ItemList';
+import { Direction, CarouselListItems } from './types';
+import { Arrows } from './controls/Arrows/Arrows';
+import { ItemsList } from './ItemsList/ItemList';
 import cls from './Carousel.module.scss';
 
 interface CarouselProps {
@@ -9,7 +9,7 @@ interface CarouselProps {
   autoplaySpeed?: number;
   width?: string | number;
   hight?: string | number;
-  items?: Array<CarouselItem>;
+  items?: CarouselListItems;
 }
 
 export const Carousel = (props: CarouselProps) => {
@@ -41,7 +41,7 @@ export const Carousel = (props: CarouselProps) => {
   return (
     <div className={cls.Carousel} style={styles}>
       <Arrows onClick={nextItem} />
-      <ItemList items={items} current={current} />
+      <ItemsList items={items} current={current} />
     </div>
   );
 };

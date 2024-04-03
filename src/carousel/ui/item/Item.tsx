@@ -1,7 +1,8 @@
+import { Img, ImgProps } from './Img/Img';
 import cls from './Item.module.scss';
 
 interface ItemProps {
-  img?: string;
+  img?: ImgProps;
   text?: string;
 }
 
@@ -9,7 +10,7 @@ export const Item = ({ img, text }: ItemProps) => {
   return (
     <div className={cls.Item}>
       <span className={cls.text}>{text}</span>
-      <img className={cls.img} src={img} />
+      <Img alt={img.alt} src={img.src} />
     </div>
   );
 };
