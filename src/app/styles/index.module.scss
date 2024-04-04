@@ -1,6 +1,12 @@
 @import 'reset';
 
-.Aaa {
-  background-color: rgb(116, 115, 115);
-  color: palevioletred;
+.App {
+  background: linear-gradient(
+    90deg,
+    rgba(52, 52, 52, 1) 17%,
+    rgba(103, 49, 100, 1) 50%,
+    rgba(59, 59, 59, 1) 95%
+  );
+
+  height: 100vh;
 }

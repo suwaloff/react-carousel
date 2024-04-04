@@ -2,6 +2,7 @@ import { CSSProperties } from 'react';
 import { CarouselItem } from '../types';
 import { Item } from '../Item/Item';
 import cls from './ItemList.module.scss';
+import { classNames } from '@/shared/lib/classNames/classNames';
 
 interface ItemsListProps {
   className?: string;
@@ -15,9 +16,9 @@ export const ItemsList = ({ items, current }: ItemsListProps) => {
   };
 
   return (
-    <div className={cls.ItemsList} style={style}>
-      {items.map((item) => (
-        <Item img={item.img} text={item.text} key={item.img.src} />
+    <div className={classNames(cls.ItemsList, {}, [])} style={style}>
+      {items.map((item, index) => (
+        <Item img={item.img} text={item.text} key={item.img.src} active={index === current} />
       ))}
     </div>
   );

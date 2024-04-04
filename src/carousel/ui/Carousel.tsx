@@ -3,6 +3,7 @@ import { Direction, CarouselListItems } from './types';
 import { Arrows } from './controls/Arrows/Arrows';
 import { ItemsList } from './ItemsList/ItemList';
 import { classNames } from '@/shared/lib/classNames/classNames';
+import { Dots } from './controls/Dots/Dots';
 import cls from './Carousel.module.scss';
 
 interface CarouselProps {
@@ -16,9 +17,8 @@ interface CarouselProps {
 
 export const Carousel = (props: CarouselProps) => {
   const { autoplay, autoplaySpeed = 4000, hight, width, items, className } = props;
-
   const [current, setCurrent] = useState(0);
-
+  const itemsLength = items.length - 1;
   const styles: CSSProperties = {
     width: width,
     height: hight,
@@ -26,10 +26,14 @@ export const Carousel = (props: CarouselProps) => {
 
   const nextItem = (direction?: Direction) => {
     if (direction === Direction.RIGHT) {
-      setCurrent(current >= items.length - 1 ? 0 : current + 1);
+      setCurrent(current >= itemsLength ? 0 : current + 1);
     } else {
-      setCurrent(current > 0 ? current - 1 : items.length - 1);
+      setCurrent(current > 0 ? current - 1 : itemsLength);
     }
+  };
+
+  const getCurrentItem = (position?: number) => {
+    setCurrent(position);
   };
 
   useEffect(() => {
@@ -44,6 +48,7 @@ export const Carousel = (props: CarouselProps) => {
   return (
     <div className={classNames(cls.Carousel, {}, [className])} style={styles}>
       <Arrows onClick={nextItem} />
+      <Dots onClick={getCurrentItem} quantity={itemsLength} current={current} />
       <ItemsList items={items} current={current} />
     </div>
   );

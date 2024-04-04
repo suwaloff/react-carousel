@@ -1,0 +1,29 @@
+.Dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+  position: absolute;
+  bottom: 10px;
+  right: 0 auto;
+  z-index: 1;
+}
+
+.dot {
+  border-radius: 20%;
+  height: 5px;
+  width: 14px;
+  border: none;
+  background-color: white;
+  opacity: 0.4;
+
+  &:hover {
+    cursor: pointer;
+    opacity: 0.8;
+  }
+}
+
+.checked {
+  opacity: 1;
+}
