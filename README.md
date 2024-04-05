@@ -1,5 +1,9 @@
 # react-carousel-ts
-
+[![npm version](https://badge.fury.io/js/react-carousel-ts.svg)](https://www.npmjs.com/package/react-carousel-ts)
+<a href="https://www.npmjs.com/package/react-carousel-ts">
+<a href="https://github.com/suwaloff/react-carousel/blob/main/LICENSE">
+<img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-red.svg" target="_blank" />
+</a>
 ## Description
 
 This is a lightweight carousel component for React applications that allows users to cycle through images or content cards.
