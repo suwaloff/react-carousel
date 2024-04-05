@@ -1,8 +1,8 @@
 import { CSSProperties } from 'react';
 import { CarouselItem } from '../types';
+import { classNames } from '../helpers/classNames';
 import { Item } from '../Item/Item';
 import cls from './ItemList.module.scss';
-import { classNames } from '@/shared/lib/classNames/classNames';
 
 interface ItemsListProps {
   className?: string;

@@ -1,7 +1,9 @@
 {
   "compilerOptions": {
-    "outDir": "./build/",
+    "declaration": true,
+    "outDir": "../../dist/carousel",
     "sourceMap": false,
+    "rootDir": "./",
     "noImplicitAny": true,
     "module": "CommonJS",
     "target": "es5",
@@ -14,13 +16,6 @@
     "paths": {
       "@/*": ["./src/*"]
     },
-
     "plugins": [{ "name": "typescript-plugin-css-modules" }]
-  },
-
-  "ts-node": {
-    "compilerOptions": {
-      "module": "CommonJS"
-    }
   }
 }

@@ -1,16 +1,16 @@
 {
-  "name": "react-carousel",
+  "name": "@suwaloff/react-carousel",
   "version": "1.0.0",
   "private": false,
   "description": "A lightweight carousel component for React applications that allows users to cycle through images or content cards.",
   "license": "MIT",
-  "main": "carousel/index.ts",
   "files": [
-    "carousel"
+    "dist/*"
   ],
+  "main": "dist/carousel/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/suwaloff/react-carousel"
+    "url": "git+https://github.com/suwaloff/react-carousel.git"
   },
   "author": "Suvalau Ihar",
   "keywords": [
@@ -21,6 +21,7 @@
     "image slider"
   ],
   "scripts": {
+    "build:npm": "tsc -p src/carousel",
     "build:dev": "webpack --env mode=development",
     "build:prod": "webpack --env mode=production",
     "build:prod:analyzer": "webpack --env mode=production analyzer=true",

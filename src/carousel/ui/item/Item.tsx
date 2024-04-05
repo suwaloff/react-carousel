@@ -1,6 +1,6 @@
 import { Img, ImgProps } from './Img/Img';
+import { classNames } from '../helpers/classNames';
 import cls from './Item.module.scss';
-import { classNames } from '@/shared/lib/classNames/classNames';
 
 interface ItemProps {
   img?: ImgProps;

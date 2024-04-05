@@ -1,9 +1,9 @@
-import { CSSProperties, useEffect, useState } from 'react';
-import { Direction, CarouselListItems } from './types';
-import { Arrows } from './controls/Arrows/Arrows';
-import { ItemsList } from './ItemsList/ItemList';
-import { classNames } from '@/shared/lib/classNames/classNames';
-import { Dots } from './controls/Dots/Dots';
+import { CSSProperties, useCallback, useEffect, useState } from 'react';
+import { Direction, CarouselListItems } from '../types';
+import { Arrows } from '../controls/Arrows/Arrows';
+import { ItemsList } from '../ItemsList/ItemList';
+import { classNames } from '../helpers/classNames';
+import { Dots } from '../controls/Dots/Dots';
 import cls from './Carousel.module.scss';
 
 interface CarouselProps {
@@ -16,21 +16,25 @@ interface CarouselProps {
 }
 
 export const Carousel = (props: CarouselProps) => {
-  const { autoplay, autoplaySpeed = 4000, hight, width, items, className } = props;
+  const { autoplay, autoplaySpeed, hight, width, items, className } = props;
   const [current, setCurrent] = useState(0);
   const itemsLength = items.length - 1;
+
   const styles: CSSProperties = {
     width: width,
     height: hight,
   };
 
-  const nextItem = (direction?: Direction) => {
-    if (direction === Direction.RIGHT) {
-      setCurrent(current >= itemsLength ? 0 : current + 1);
-    } else {
-      setCurrent(current > 0 ? current - 1 : itemsLength);
-    }
-  };
+  const nextItem = useCallback(
+    (direction?: Direction) => {
+      if (direction === Direction.RIGHT) {
+        setCurrent(current >= itemsLength ? 0 : current + 1);
+      } else {
+        setCurrent(current > 0 ? current - 1 : itemsLength);
+      }
+    },
+    [current, itemsLength]
+  );
 
   const getCurrentItem = (position?: number) => {
     setCurrent(position);
@@ -41,7 +45,6 @@ export const Carousel = (props: CarouselProps) => {
       return;
     }
     const interval = setInterval(() => nextItem(Direction.RIGHT), autoplaySpeed);
-
     return () => clearInterval(interval);
   }, [current]);
 
@@ -52,4 +55,8 @@ export const Carousel = (props: CarouselProps) => {
       <ItemsList items={items} current={current} />
     </div>
   );
+};
+
+Carousel.defaultProps = {
+  autoplaySpeed: 4000,
 };
