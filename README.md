@@ -1,4 +1,5 @@
 # react-carousel-ts
+![npm bundle size](https://img.shields.io/bundlephobia/minzip/react-carousel-ts/0.1.1)
 <a href="https://github.com/suwaloff/react-carousel/blob/main/LICENSE">
 <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-red.svg" target="_blank" />
 </a>
