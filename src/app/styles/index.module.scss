@@ -1,12 +1,28 @@
 @import 'reset';
 
 .App {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+.carousel {
+  width: 800px;
+  height: 600px;
+}
+
+@media (max-width: 767px) {
+  .carousel {
+    height: 300px;
+  }
+}
+
+body {
   background: linear-gradient(
     90deg,
-    rgba(52, 52, 52, 1) 17%,
-    rgba(103, 49, 100, 1) 50%,
-    rgba(59, 59, 59, 1) 95%
+    rgba(26, 26, 26, 1) 17%,
+    rgba(65, 0, 60, 1) 50%,
+    rgba(26, 26, 26, 1) 95%
   );
-  height: 100vh;
-  display: flex;
+  background-size: cover;
+  //background-repeat: no-repeat;
 }

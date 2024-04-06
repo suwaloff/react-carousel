@@ -1,6 +1,6 @@
 {
-  "name": "@suwaloff/react-carousel",
-  "version": "1.0.0",
+  "name": "react-carousel-ts",
+  "version": "0.1.1",
   "private": false,
   "description": "A lightweight carousel component for React applications that allows users to cycle through images or content cards.",
   "license": "MIT",
@@ -15,13 +15,14 @@
   "author": "Suvalau Ihar",
   "keywords": [
     "react slider",
+    "react library",
     "carousel",
     "slider",
     "image slider",
-    "image slider"
+    "image carousel"
   ],
   "scripts": {
-    "build:npm": "tsc -p src/carousel",
+    "build:npm": "tsc -p src/carousel && copyfiles -u 1 \"src/carousel/**/*.scss\" dist",
     "build:dev": "webpack --env mode=development",
     "build:prod": "webpack --env mode=production",
     "build:prod:analyzer": "webpack --env mode=production analyzer=true",
@@ -35,6 +36,7 @@
     "@types/webpack": "^5.28.5",
     "@types/webpack-bundle-analyzer": "^4.7.0",
     "@types/webpack-dev-server": "^4.7.2",
+    "copyfiles": "^2.4.1",
     "css-loader": "^6.10.0",
     "fork-ts-checker-webpack-plugin": "^9.0.2",
     "html-webpack-plugin": "^5.6.0",

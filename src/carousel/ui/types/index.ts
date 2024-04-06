@@ -1,7 +1,7 @@
 import { ImgProps } from '../Item/Img/Img';
 
 export interface CarouselItem {
-  img?: ImgProps;
+  img: ImgProps;
   text?: string;
 }
 
