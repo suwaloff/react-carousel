@@ -4,10 +4,10 @@
 <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-red.svg" target="_blank" />
 </a>
 
-## Description
 
-This is a lightweight carousel component for React applications that allows users to cycle through images or content cards.
+# Ultra-light carousel component for React
 
+[![SVO0w.gif](https://s12.gifyu.com/images/SVO0w.gif)](https://gifyu.com/image/SVO0w)
 ## Installation
 
 Install the package using npm:
@@ -49,6 +49,8 @@ export const App = () => {
 
 | Name          | Type              | Default | Description |
 | :------------ | :---------------- | :------ | :---------- |
+| showDots    | `boolean`          | `true`    | CSS class for styling. |
+| showArrows     | `boolean`          | `true`    | CSS class for styling. |
 | className     | `string`          | `''`    | CSS class for styling. |
 | autoplay      | `boolean`         | `false` | Enables automatic cycling. |
 | autoplaySpeed | `number`          | `4000`  | Speed of autoplay in ms. |
