@@ -7,6 +7,8 @@ import { Dots } from '../controls/Dots/Dots';
 import cls from './Carousel.module.scss';
 
 interface CarouselProps {
+  showDots?: boolean;
+  showArrows?: boolean;
   className?: string;
   autoplay?: boolean;
   autoplaySpeed?: number;
@@ -16,8 +18,9 @@ interface CarouselProps {
 }
 
 export const Carousel = (props: CarouselProps) => {
-  const { autoplay, autoplaySpeed, hight, width, items, className } = props;
+  const { autoplay, autoplaySpeed, hight, width, items, className, showArrows, showDots } = props;
   const [current, setCurrent] = useState(0);
+  const [touchPosition, setTouchPosition] = useState(null);
   const itemsLength = items.length - 1;
 
   const styles: CSSProperties = {
@@ -48,10 +51,41 @@ export const Carousel = (props: CarouselProps) => {
     return () => clearInterval(interval);
   }, [current]);
 
+  const handleTouchStart = (e?: React.TouchEvent) => {
+    const touchDown = e.touches[0].clientX;
+
+    setTouchPosition(touchDown);
+  };
+
+  const handleTouchMove = (e?: React.TouchEvent) => {
+    if (touchPosition === null) {
+      return;
+    }
+
+    const currentPosition = e.touches[0].clientX;
+    const direction = touchPosition - currentPosition;
+
+    if (direction > 10) {
+      nextItem(Direction.RIGHT);
+      setTouchPosition(currentPosition);
+    }
+
+    if (direction < -10) {
+      nextItem(Direction.LEFT);
+      setTouchPosition(currentPosition);
+    }
+
+    setTouchPosition(null);
+  };
   return (
-    <div className={classNames(cls.Carousel, {}, [className])} style={styles}>
-      <Arrows onClick={nextItem} />
-      <Dots onClick={getCurrentItem} quantity={itemsLength} current={current} />
+    <div
+      className={classNames(cls.Carousel, {}, [className])}
+      style={styles}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+    >
+      {showArrows && <Arrows onClick={nextItem} />}
+      {showDots && <Dots onClick={getCurrentItem} quantity={itemsLength} current={current} />}
       <ItemsList items={items} current={current} />
     </div>
   );
@@ -59,4 +93,6 @@ export const Carousel = (props: CarouselProps) => {
 
 Carousel.defaultProps = {
   autoplaySpeed: 4000,
+  showDots: true,
+  showArrows: true,
 };

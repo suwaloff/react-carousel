@@ -6,24 +6,38 @@ export const App = () => {
   const data: CarouselListItems = [
     {
       img: {
-        src: 'https://images.pexels.com/photos/45201/kitty-cat-kitten-pet-45201.jpeg',
+        src: 'https://images.pexels.com/photos/10520684/pexels-photo-10520684.jpeg',
+        alt: 'cute kitten',
+      },
+      text: 'Lorem ipsum dolor sit amet.',
+    },
+    {
+      img: {
+        src: 'https://images.pexels.com/photos/10818087/pexels-photo-10818087.jpeg',
+        alt: 'cute kitten',
+      },
+      text: 'Lorem ipsum dolor sit amet consectetur adipisicing.',
+    },
+    {
+      img: {
+        src: 'https://images.pexels.com/photos/7420410/pexels-photo-7420410.png',
+        alt: 'cute kitten',
+      },
+      text: 'Lorem ipsum dolor sit amet consectetur adipisicing.',
+    },
+    {
+      img: {
+        src: 'https://images.pexels.com/photos/12756386/pexels-photo-12756386.jpeg',
         alt: 'cute kitten',
       },
       text: 'Cute Kitten',
     },
     {
       img: {
-        src: 'https://images.pexels.com/photos/45201/kitty-cat-kitten-pet-45201.jpeg',
+        src: 'https://images.pexels.com/photos/9734834/pexels-photo-9734834.jpeg',
         alt: 'cute kitten',
       },
-      text: 'Cute Kitten',
-    },
-    {
-      img: {
-        src: 'https://images.pexels.com/photos/45201/kitty-cat-kitten-pet-45201.jpeg',
-        alt: 'cute kitten',
-      },
-      text: 'Cute Kitten',
+      text: 'Lorem ipsum dolor sit amet consectetur adipisicing.',
     },
   ];
 
