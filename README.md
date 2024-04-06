@@ -48,8 +48,8 @@ export const App = () => {
 
 | Name          | Type              | Default | Description |
 | :------------ | :---------------- | :------ | :---------- |
-| showDots    | `boolean`          | `true`    | CSS class for styling. |
-| showArrows     | `boolean`          | `true`    | CSS class for styling. |
+| showDots    | `boolean`          | `true`    | Shows navigation dots. |
+| showArrows     | `boolean`          | `true`    |  Shows navigation arrows.|
 | className     | `string`          | `''`    | CSS class for styling. |
 | autoplay      | `boolean`         | `false` | Enables automatic cycling. |
 | autoplaySpeed | `number`          | `4000`  | Speed of autoplay in ms. |
