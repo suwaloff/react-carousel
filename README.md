@@ -18,8 +18,7 @@ npm i react-carousel-ts
 ## Usage
 
 ```js
-import { CarouselListItems } from '@/carousel/ui/types';
-import { Carousel } from '@/carousel';
+import { Carousel, CarouselListItems } from 'react-carousel-ts';
 
 export const App = () => {
 
