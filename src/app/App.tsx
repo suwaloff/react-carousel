@@ -1,6 +1,7 @@
 import { CarouselListItems } from '@/carousel/ui/types';
 import { Carousel } from '@/carousel';
 import cls from '@/app/styles/index.module.scss';
+import { CarouselTheme } from '@/carousel/ui/Carousel/Carousel';
 
 export const App = () => {
   const data: CarouselListItems = [
@@ -43,7 +44,7 @@ export const App = () => {
 
   return (
     <div className={cls.App}>
-      <Carousel items={data} className={cls.carousel} />
+      <Carousel items={data} className={cls.carousel} theme={CarouselTheme.SHOW_NEIGHBORS} />
     </div>
   );
 };

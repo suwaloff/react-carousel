@@ -1,6 +1,6 @@
 {
   "name": "react-carousel-ts",
-  "version": "0.1.1",
+  "version": "1.1.0",
   "private": false,
   "description": "A lightweight carousel component for React applications that allows users to cycle through images or content cards.",
   "license": "MIT",
@@ -22,7 +22,7 @@
     "image carousel"
   ],
   "scripts": {
-    "build:npm": "tsc -p src/carousel && copyfiles -u 1 \"src/carousel/**/*.scss\" dist",
+    "build:npm": "tsc -p src/carousel && copyfiles -u 1 \"src/carousel/**/*.css\" dist",
     "build:dev": "webpack --env mode=development",
     "build:prod": "webpack --env mode=production",
     "build:prod:analyzer": "webpack --env mode=production analyzer=true",

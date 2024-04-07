@@ -1,5 +1,5 @@
 import { classNames } from '../../helpers/classNames';
-import cls from './Dots.module.scss';
+import './Dots.css';
 
 interface DotsProps {
   className?: string;
@@ -12,10 +12,10 @@ export const Dots = ({ className, quantity, onClick, current }: DotsProps) => {
   const dots = new Array(quantity + 1).fill(0);
 
   return (
-    <div className={cls.Dots}>
+    <div className={'Dots'}>
       {dots.map((value, index) => (
         <button
-          className={classNames(cls.dot, { [cls.checked]: current === index }, [className])}
+          className={classNames('dot', { ['checked']: current === index }, [className])}
           onClick={() => onClick(index)}
           key={index}
         ></button>

@@ -1,5 +1,5 @@
 import { Direction } from '../../types';
-import cls from './Arrows.module.scss';
+import './Arrows.css';
 
 interface ArrowsProps {
   onClick: (direction: Direction) => void;
@@ -7,11 +7,11 @@ interface ArrowsProps {
 
 export const Arrows = ({ onClick }: ArrowsProps) => {
   return (
-    <div className={cls.Arrows}>
-      <button className={cls.arrow} onClick={() => onClick(Direction.LEFT)}>
+    <div className={'Arrows'}>
+      <button className={'arrow'} onClick={() => onClick(Direction.LEFT)}>
         {'<'}
       </button>
-      <button className={cls.arrow} onClick={() => onClick(Direction.RIGHT)}>
+      <button className={'arrow'} onClick={() => onClick(Direction.RIGHT)}>
         {'>'}
       </button>
     </div>

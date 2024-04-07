@@ -2,13 +2,19 @@ import { CSSProperties, useCallback, useEffect, useState } from 'react';
 import { Direction, CarouselListItems } from '../types';
 import { Arrows } from '../controls/Arrows/Arrows';
 import { ItemsList } from '../ItemsList/ItemList';
-import { classNames } from '../helpers/classNames';
+import { Mods, classNames } from '../helpers/classNames';
 import { Dots } from '../controls/Dots/Dots';
-import cls from './Carousel.module.scss';
+import './Carousel.css';
+
+export enum CarouselTheme {
+  SHOW_NEIGHBORS = 'showNeighbors',
+  NEIGHBORS_3D = 'neighbors-3d',
+}
 
 interface CarouselProps {
   showDots?: boolean;
   showArrows?: boolean;
+  theme?: CarouselTheme;
   className?: string;
   autoplay?: boolean;
   autoplaySpeed?: number;
@@ -18,7 +24,8 @@ interface CarouselProps {
 }
 
 export const Carousel = (props: CarouselProps) => {
-  const { autoplay, autoplaySpeed, hight, width, items, className, showArrows, showDots } = props;
+  const { autoplay, autoplaySpeed, hight, width, items, className, showArrows, showDots, theme } =
+    props;
   const [current, setCurrent] = useState(0);
   const [touchPosition, setTouchPosition] = useState(null);
   const itemsLength = items.length - 1;
@@ -77,9 +84,15 @@ export const Carousel = (props: CarouselProps) => {
 
     setTouchPosition(null);
   };
+
+  const mods: Mods = {
+    [CarouselTheme.SHOW_NEIGHBORS]: theme === CarouselTheme.SHOW_NEIGHBORS,
+    [CarouselTheme.NEIGHBORS_3D]: theme === CarouselTheme.NEIGHBORS_3D,
+  };
+
   return (
     <div
-      className={classNames(cls.Carousel, {}, [className])}
+      className={classNames('Carousel', mods, [className])}
       style={styles}
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}

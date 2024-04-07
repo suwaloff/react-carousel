@@ -1,4 +1,4 @@
-import cls from './Img.module.scss';
+import './Img.css';
 
 export interface ImgProps {
   src: string;
@@ -6,5 +6,5 @@ export interface ImgProps {
 }
 
 export const Img = ({ src, alt }: ImgProps) => {
-  return <img className={cls.Img} src={src} alt={alt} />;
+  return <img className={'Img'} src={src} alt={alt} />;
 };
