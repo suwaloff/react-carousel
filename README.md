@@ -59,6 +59,7 @@ export const App = () => {
 
 | Name          | Type                | Default   | Description                |
 | :------------ | :------------------ | :-------- | :------------------------- |
+| theme     | `CarouselTheme`           | `undefined`    |Carosel themes  |
 | showDots      | `boolean`           | `true`    | Shows navigation dots.     |
 | showArrows    | `boolean`           | `true`    | Shows navigation arrows.   |
 | className     | `string`            | `''`      | CSS class for styling.     |
