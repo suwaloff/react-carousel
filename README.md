@@ -14,7 +14,7 @@
 Install the package using npm:
 
 ```bash
-npm i react-carousel-ts
+npm i -D react-carousel-ts
 ```
 
 ## Usage
