@@ -1,5 +1,5 @@
-import { CSSProperties, useCallback, useEffect, useState } from 'react';
-import { Direction, CarouselListItems } from '../types';
+import { CSSProperties, useCallback, useEffect, useState, ReactNode } from 'react';
+import { Direction } from '../types';
 import { Arrows } from '../controls/Arrows/Arrows';
 import { ItemsList } from '../ItemsList/ItemList';
 import { Mods, classNames } from '../helpers/classNames';
@@ -20,7 +20,7 @@ interface CarouselProps {
   autoplaySpeed?: number;
   width?: string | number;
   hight?: string | number;
-  items?: CarouselListItems;
+  items?: ReactNode[];
 }
 
 export const Carousel = (props: CarouselProps) => {
@@ -28,6 +28,7 @@ export const Carousel = (props: CarouselProps) => {
     props;
   const [current, setCurrent] = useState(0);
   const [touchPosition, setTouchPosition] = useState(null);
+
   const itemsLength = items.length - 1;
 
   const styles: CSSProperties = {
@@ -97,7 +98,7 @@ export const Carousel = (props: CarouselProps) => {
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
     >
-      {showArrows && <Arrows onClick={nextItem} />}
+      {showArrows && <Arrows onClick={nextItem} current={current} itemsLength={itemsLength} />}
       {showDots && <Dots onClick={getCurrentItem} quantity={itemsLength} current={current} />}
       <ItemsList items={items} current={current} />
     </div>

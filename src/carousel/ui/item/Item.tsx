@@ -1,19 +1,13 @@
-import { Img, ImgProps } from './Img/Img';
+import { ReactNode } from 'react';
 import { classNames } from '../helpers/classNames';
 import './Item.css';
 
 interface ItemProps {
-  img?: ImgProps;
-  text?: string;
+  children?: ReactNode;
   className?: string;
   active?: boolean;
 }
 
-export const Item = ({ img, text, className, active }: ItemProps) => {
-  return (
-    <div className={classNames('Item', { ['active']: active }, [className])}>
-      <span className={'text'}>{text}</span>
-      <Img alt={img.alt} src={img.src} />
-    </div>
-  );
+export const Item = ({ className, active, children }: ItemProps) => {
+  return <div className={classNames('Item', { ['active']: active }, [className])}>{children}</div>;
 };
