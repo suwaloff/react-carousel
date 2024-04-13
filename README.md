@@ -20,36 +20,29 @@ npm i -D react-carousel-ts
 ## Usage
 
 ```js
-import { Carousel, CarouselListItems } from 'react-carousel-ts';
+import { Carousel, CarouselProps } from '@/carousel';
+import cls from '@/app/styles/index.module.scss';
 
 export const App = () => {
-  const data: CarouselListItems = [
-    {
-      img: {
-        src: 'https://images.pexels.com/photos/10520684/pexels-photo-10520684.jpeg',
-        alt: 'cute kitten',
-      },
-      text: 'Lorem ipsum dolor sit amet.',
-    },
-    {
-      img: {
-        src: 'https://images.pexels.com/photos/10818087/pexels-photo-10818087.jpeg',
-        alt: 'cute kitten',
-      },
-      text: 'Lorem ipsum dolor sit amet consectetur adipisicing.',
-    },
-    {
-      img: {
-        src: 'https://images.pexels.com/photos/7420410/pexels-photo-7420410.png',
-        alt: 'cute kitten',
-      },
-      text: 'Lorem ipsum dolor sit amet consectetur adipisicing.',
-    },
+  const data = [
+    <div className={cls.example}>1</div>,
+    <div className={cls.example}>2</div>,
+    <div className={cls.example}>3</div>,
   ];
+
+  const props: CarouselProps = {
+    className: cls.carousel,
+    items: data,
+    speed: 500,
+    showDots: false,
+    autoplay: true,
+    autoplaySpeed: 1500,
+    visibleItemCount: 2,
+  };
 
   return (
     <div className={cls.App}>
-      <Carousel items={data} autoplay={true} autoplaySpeed={3000} />
+      <Carousel {...props} />
     </div>
   );
 };
@@ -57,14 +50,15 @@ export const App = () => {
 
 ## Props
 
-| Name          | Type                | Default   | Description                |
-| :------------ | :------------------ | :-------- | :------------------------- |
-| theme     | `CarouselTheme`           | `undefined`    |Carosel themes  |
-| showDots      | `boolean`           | `true`    | Shows navigation dots.     |
-| showArrows    | `boolean`           | `true`    | Shows navigation arrows.   |
-| className     | `string`            | `''`      | CSS class for styling.     |
-| autoplay      | `boolean`           | `false`   | Enables automatic cycling. |
-| autoplaySpeed | `number`            | `4000`    | Speed of autoplay in ms.   |
-| width         | `string \| number`  | `'600px'` | Width of the carousel.     |
-| height        | `string \| number`  | `'400px'` | Height of the carousel.    |
-| items         | `CarouselListItems` | `[]`      | Items to display.          |
+| Name             | Type                | Default   | Description                |
+| :--------------- | :------------------ | :-------- | :------------------------- |
+| items            | `CarouselListItems` | `[]`      | Items to display.          |
+| className        | `string`            | `''`      | CSS class for styling.     |
+| showDots         | `boolean`           | `true`    | Shows navigation dots.     |
+| showArrows       | `boolean`           | `true`    | Shows navigation arrows.   |
+| speed            | `number`            | `500`     | Items to display.          |
+| autoplay         | `boolean`           | `false`   | Enables automatic cycling. |
+| autoplaySpeed    | `number`            | `4000`    | Speed of autoplay in ms.   |
+| visibleItemCount | `number`            | `1`       | Items to display.          |
+| width            | `string \| number`  | `'600px'` | Width of the carousel.     |
+| height           | `string \| number`  | `'400px'` | Height of the carousel.    |

@@ -1,1 +1,1 @@
-export { Carousel } from './ui/Carousel/Carousel';
+export { Carousel, CarouselProps } from './ui/Carousel/Carousel';
