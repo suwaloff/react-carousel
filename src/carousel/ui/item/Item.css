@@ -1,26 +1,8 @@
-.Item {
-  width: 80%;
-  height: 80%;
-  flex: 1 0 100%;
+.item {
+  /* width: 100%;
+  height: 100%; */
+  flex-grow: 1;
+  flex-shrink: 0;
   position: relative;
-  opacity: 0.5;
-  transition: opacity 1s ease-in-out, width 1s ease, height 1s ease;
-}
-
-.text {
-  position: absolute;
-  display: flex;
-  text-align: center;
-  justify-content: center;
-  align-items: end;
-  width: 100%;
-  height: 90%;
-  color: rgb(255, 255, 255);
-  font-size: xx-large;
-}
-
-.active {
-  width: 100%;
-  height: 100%;
   opacity: 1;
 }

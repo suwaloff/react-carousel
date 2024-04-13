@@ -11,7 +11,9 @@ export enum CarouselTheme {
   NEIGHBORS_3D = 'neighbors-3d',
 }
 
-interface CarouselProps {
+export interface CarouselProps {
+  visibleItemCount?: number;
+  speed?: number;
   showDots?: boolean;
   showArrows?: boolean;
   theme?: CarouselTheme;
@@ -24,8 +26,19 @@ interface CarouselProps {
 }
 
 export const Carousel = (props: CarouselProps) => {
-  const { autoplay, autoplaySpeed, hight, width, items, className, showArrows, showDots, theme } =
-    props;
+  const {
+    autoplay,
+    autoplaySpeed,
+    hight,
+    width,
+    items,
+    className,
+    showArrows,
+    showDots,
+    theme,
+    speed,
+    visibleItemCount,
+  } = props;
   const [current, setCurrent] = useState(0);
   const [touchPosition, setTouchPosition] = useState(null);
 
@@ -39,7 +52,7 @@ export const Carousel = (props: CarouselProps) => {
   const nextItem = useCallback(
     (direction?: Direction) => {
       if (direction === Direction.RIGHT) {
-        setCurrent(current >= itemsLength ? 0 : current + 1);
+        setCurrent(current + (visibleItemCount - 1) >= itemsLength ? 0 : current + 1);
       } else {
         setCurrent(current > 0 ? current - 1 : itemsLength);
       }
@@ -98,9 +111,27 @@ export const Carousel = (props: CarouselProps) => {
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
     >
-      {showArrows && <Arrows onClick={nextItem} current={current} itemsLength={itemsLength} />}
-      {showDots && <Dots onClick={getCurrentItem} quantity={itemsLength} current={current} />}
-      <ItemsList items={items} current={current} />
+      {showArrows && (
+        <Arrows
+          onClick={nextItem}
+          current={current}
+          itemsLength={itemsLength}
+          visibleItemCount={visibleItemCount}
+        />
+      )}
+      {showDots && (
+        <Dots
+          onClick={getCurrentItem}
+          quantity={items.length - visibleItemCount}
+          current={current}
+        />
+      )}
+      <ItemsList
+        items={items}
+        current={current}
+        speed={speed}
+        visibleItemCount={visibleItemCount}
+      />
     </div>
   );
 };
@@ -109,4 +140,6 @@ Carousel.defaultProps = {
   autoplaySpeed: 4000,
   showDots: true,
   showArrows: true,
+  speed: 500,
+  visibleItemCount: 1,
 };

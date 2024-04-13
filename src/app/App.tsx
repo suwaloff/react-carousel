@@ -1,17 +1,29 @@
+import { CarouselProps } from '@/carousel/ui/Carousel/Carousel';
 import { Carousel } from '@/carousel';
-import { CarouselTheme } from '@/carousel/ui/Carousel/Carousel';
 import cls from '@/app/styles/index.module.scss';
 
 export const App = () => {
   const data = [
-    <div style={{ background: 'green', height: '100%', width: '100%' }}></div>,
-    <div style={{ background: 'red', height: '100%', width: '100%' }}></div>,
-    <div style={{ background: 'blue', height: '100%', width: '100%' }}></div>,
+    <div className={cls.example}>1</div>,
+    <div className={cls.example}>2</div>,
+    <div className={cls.example}>3</div>,
+    <div className={cls.example}>4</div>,
+    <div className={cls.example}>5</div>,
   ];
+
+  const props: CarouselProps = {
+    className: cls.carousel,
+    items: data,
+    speed: 500,
+    showDots: false,
+    autoplay: true,
+    autoplaySpeed: 1500,
+    visibleItemCount: 2,
+  };
 
   return (
     <div className={cls.App}>
-      <Carousel items={data} className={cls.carousel} theme={CarouselTheme.SHOW_NEIGHBORS} />
+      <Carousel {...props} />
     </div>
   );
 };
