@@ -1,4 +1,4 @@
-# react-carousel-ts
+ # React-carousel- [![ts](https://skillicons.dev/icons?i=ts)](https://www.npmjs.com/package/react-carousel-ts?activeTab=readme) 
 
 ![npm bundle size](https://img.shields.io/bundlephobia/minzip/react-carousel-ts/0.1.1)
 <a href="https://github.com/suwaloff/react-carousel/blob/main/LICENSE">
