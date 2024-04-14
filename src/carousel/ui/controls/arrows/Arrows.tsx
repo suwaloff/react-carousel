@@ -1,3 +1,4 @@
+import { CarouselControlColor } from '../types';
 import { Direction } from '../../types';
 import RightArrow from '../icons/arrow-right.svg';
 import LeftArrow from '../icons/arrow-left.svg';
@@ -8,7 +9,7 @@ interface ArrowsProps {
   current: number;
   itemsLength: number;
   visibleItemCount: number;
-  arrowColor?: string;
+  arrowColor?: CarouselControlColor;
   arrowSize?: number | string;
 }
 

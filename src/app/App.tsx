@@ -18,7 +18,7 @@ export const App = () => {
     className: cls.carousel,
     items: data,
     speed: 500,
-    showDots: false,
+    // showDots: false,
     //autoplay: true,
     autoplaySpeed: 1500,
     visibleItemCount: 1,

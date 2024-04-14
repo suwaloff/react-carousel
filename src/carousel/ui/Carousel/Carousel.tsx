@@ -1,8 +1,9 @@
 import { CSSProperties, useCallback, useEffect, useState, ReactNode } from 'react';
+import { Mods, classNames } from '../helpers/classNames';
+import { CarouselControlColor } from '../controls/types/index';
+import { ItemsList } from '../ItemsList/ItemList';
 import { Direction } from '../types';
 import { Arrows } from '../controls/Arrows/Arrows';
-import { ItemsList } from '../ItemsList/ItemList';
-import { Mods, classNames } from '../helpers/classNames';
 import { Dots } from '../controls/Dots/Dots';
 import './Carousel.css';
 
@@ -16,7 +17,7 @@ export interface CarouselProps {
   showDots?: boolean;
   showArrows?: boolean;
   arrowSize?: number;
-  arrowColor?: string;
+  arrowColor?: CarouselControlColor;
   className?: string;
   visibleItemCount?: number;
   speed?: number;
