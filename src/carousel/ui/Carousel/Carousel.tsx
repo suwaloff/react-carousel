@@ -12,9 +12,11 @@ export enum CarouselTheme {
 }
 
 export interface CarouselProps {
-  items?: ReactNode[];
+  items: ReactNode[];
   showDots?: boolean;
   showArrows?: boolean;
+  arrowSize?: number;
+  arrowColor?: string;
   className?: string;
   visibleItemCount?: number;
   speed?: number;
@@ -38,6 +40,8 @@ export const Carousel = (props: CarouselProps) => {
     theme,
     speed,
     visibleItemCount,
+    arrowSize,
+    arrowColor,
   } = props;
   const [current, setCurrent] = useState(0);
   const [touchPosition, setTouchPosition] = useState(null);
@@ -117,6 +121,8 @@ export const Carousel = (props: CarouselProps) => {
           current={current}
           itemsLength={itemsLength}
           visibleItemCount={visibleItemCount}
+          arrowSize={arrowSize}
+          arrowColor={arrowColor}
         />
       )}
       {showDots && (
@@ -142,4 +148,6 @@ Carousel.defaultProps = {
   showArrows: true,
   speed: 500,
   visibleItemCount: 1,
+  arrowSize: 6,
+  arrowColor: 'white',
 };
