@@ -14,7 +14,7 @@ interface ItemsListProps {
 export const ItemsList = ({ items, current, speed, visibleItemCount }: ItemsListProps) => {
   const style: CSSProperties = {
     transform: `translateX(-${(current * 100) / visibleItemCount}%)`,
-    transition: `transform ${speed}ms ease`,
+    transition: `transform ${speed}ms ease-in-out`,
   };
 
   return (

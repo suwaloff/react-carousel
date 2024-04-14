@@ -13,7 +13,7 @@ interface ItemProps {
 export const Item = ({ className, active, children, speed, visibleItemCount }: ItemProps) => {
   const style: CSSProperties = {
     flexBasis: `calc(100% / ${visibleItemCount})`,
-    padding: '10px',
+
     // width: `calc(100% / ${visibleItemCount})`,
     // height: `calc(100% / ${visibleItemCount})`,
     // transition: `opacity ${speed}ms ease-in-out, width ${speed}ms ease, height ${speed}ms ease`,

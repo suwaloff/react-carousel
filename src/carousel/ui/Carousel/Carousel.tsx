@@ -12,17 +12,17 @@ export enum CarouselTheme {
 }
 
 export interface CarouselProps {
-  visibleItemCount?: number;
-  speed?: number;
+  items?: ReactNode[];
   showDots?: boolean;
   showArrows?: boolean;
-  theme?: CarouselTheme;
   className?: string;
+  visibleItemCount?: number;
+  speed?: number;
+  theme?: CarouselTheme;
   autoplay?: boolean;
   autoplaySpeed?: number;
   width?: string | number;
   hight?: string | number;
-  items?: ReactNode[];
 }
 
 export const Carousel = (props: CarouselProps) => {

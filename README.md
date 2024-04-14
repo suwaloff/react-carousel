@@ -1,4 +1,4 @@
- # React-carousel- [![ts](https://skillicons.dev/icons?i=ts)](https://www.npmjs.com/package/react-carousel-ts?activeTab=readme) 
+# React-carousel- [![ts](https://skillicons.dev/icons?i=ts)](https://www.npmjs.com/package/react-carousel-ts?activeTab=readme)
 
 ![npm bundle size](https://img.shields.io/bundlephobia/minzip/react-carousel-ts/0.1.1)
 <a href="https://github.com/suwaloff/react-carousel/blob/main/LICENSE">
@@ -56,9 +56,9 @@ export const App = () => {
 | className        | `string`            | `''`      | CSS class for styling.     |
 | showDots         | `boolean`           | `true`    | Shows navigation dots.     |
 | showArrows       | `boolean`           | `true`    | Shows navigation arrows.   |
-| speed            | `number`            | `500`     | Items to display.          |
+| speed            | `number`            | `500`     | Transition speed in ms.    |
 | autoplay         | `boolean`           | `false`   | Enables automatic cycling. |
 | autoplaySpeed    | `number`            | `4000`    | Speed of autoplay in ms.   |
-| visibleItemCount | `number`            | `1`       | Items to display.          |
+| visibleItemCount | `number`            | `1`       | Number of visible items.   |
 | width            | `string \| number`  | `'600px'` | Width of the carousel.     |
 | height           | `string \| number`  | `'400px'` | Height of the carousel.    |

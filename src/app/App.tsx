@@ -3,9 +3,15 @@ import cls from '@/app/styles/index.module.scss';
 
 export const App = () => {
   const data = [
-    <div className={cls.example}>1</div>,
-    <div className={cls.example}>2</div>,
-    <div className={cls.example}>3</div>,
+    <div className={cls.example} style={{ backgroundColor: 'GrayText' }}>
+      1
+    </div>,
+    <div className={cls.example} style={{ backgroundColor: 'pink' }}>
+      2
+    </div>,
+    <div className={cls.example} style={{ backgroundColor: 'blueviolet' }}>
+      3
+    </div>,
   ];
 
   const props: CarouselProps = {
@@ -13,7 +19,7 @@ export const App = () => {
     items: data,
     speed: 500,
     showDots: false,
-    autoplay: true,
+    //autoplay: true,
     autoplaySpeed: 1500,
     visibleItemCount: 1,
   };
