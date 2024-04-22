@@ -1,20 +1,19 @@
-.Dots {
+.carousel-dots {
   display: flex;
   justify-content: center;
-  gap: 15px;
   width: 100%;
   position: absolute;
-  bottom: 20px;
+  bottom: 1.25rem;
   z-index: 1;
 }
 
-.dot {
-  border-radius: 20%;
-  height: 5px;
-  width: 14px;
+.carousel-dots--rectangle,
+.carousel-dots--round,
+.carousel-dots--line {
   border: none;
-  background-color: white;
+  background: white;
   opacity: 0.4;
+  margin-right: 1rem;
 
   &:hover {
     cursor: pointer;
@@ -22,6 +21,24 @@
   }
 }
 
-.checked {
+.carousel-dots--rectangle {
+  height: 0.3rem;
+  width: 0.8rem;
+}
+
+.carousel-dots--round {
+  aspect-ratio: 1;
+  border-radius: 50%;
+  padding: 0 0.25rem;
+}
+
+.carousel-dots--line {
+  height: 0.35rem;
+  width: 100%;
+  margin-right: 0rem;
+}
+
+.carousel-dots--checked {
   opacity: 1;
+  transition: opacity 1.6s ease;
 }

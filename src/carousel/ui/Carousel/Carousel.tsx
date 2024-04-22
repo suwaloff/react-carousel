@@ -4,7 +4,7 @@ import { CarouselControlColor } from '../controls/types/index';
 import { ItemsList } from '../ItemsList/ItemList';
 import { Direction } from '../types';
 import { Arrows } from '../controls/Arrows/Arrows';
-import { Dots } from '../controls/Dots/Dots';
+import { Dots, DotsTheme } from '../controls/Dots/Dots';
 import './Carousel.css';
 
 export enum CarouselTheme {
@@ -15,6 +15,8 @@ export enum CarouselTheme {
 export interface CarouselProps {
   items: ReactNode[];
   showDots?: boolean;
+  dotsColor?: CarouselControlColor;
+  dotsTheme?: DotsTheme;
   showArrows?: boolean;
   arrowSize?: number;
   arrowColor?: CarouselControlColor;
@@ -43,6 +45,8 @@ export const Carousel = (props: CarouselProps) => {
     visibleItemCount,
     arrowSize,
     arrowColor,
+    dotsColor,
+    dotsTheme,
   } = props;
   const [current, setCurrent] = useState(0);
   const [touchPosition, setTouchPosition] = useState(null);
@@ -131,6 +135,8 @@ export const Carousel = (props: CarouselProps) => {
           onClick={getCurrentItem}
           quantity={items.length - visibleItemCount}
           current={current}
+          dotsColor={dotsColor}
+          dotsTheme={dotsTheme}
         />
       )}
       <ItemsList
