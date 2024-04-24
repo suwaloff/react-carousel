@@ -11,6 +11,7 @@ interface ArrowsProps {
   visibleItemCount: number;
   arrowColor?: CarouselControlColor;
   arrowSize?: number | string;
+  infinity?: boolean;
 }
 
 export const Arrows = ({
@@ -20,9 +21,10 @@ export const Arrows = ({
   visibleItemCount,
   arrowColor,
   arrowSize,
+  infinity,
 }: ArrowsProps) => {
-  const showLeftArrow: boolean = current != 0;
-  const showRightArrow: boolean = current != itemsLength - (visibleItemCount - 1);
+  const showLeftArrow: boolean = infinity || current != 0;
+  const showRightArrow: boolean = infinity || current != itemsLength - (visibleItemCount - 1);
 
   return (
     <div className={'Arrows'}>

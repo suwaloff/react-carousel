@@ -1,5 +1,4 @@
-import { CSSProperties, ReactNode } from 'react';
-import { classNames } from '../helpers/classNames';
+import { ReactNode } from 'react';
 import { Item } from '../Item/Item';
 import './ItemList.css';
 
@@ -12,20 +11,15 @@ interface ItemsListProps {
 }
 
 export const ItemsList = ({ items, current, speed, visibleItemCount }: ItemsListProps) => {
-  const style: CSSProperties = {
-    transform: `translateX(-${(current * 100) / visibleItemCount}%)`,
-    transition: `transform ${speed}ms ease-in-out`,
-  };
-
   return (
-    <div className={classNames('ItemsList', {}, [])} style={style}>
+    <div className="carousel-items-list">
       {items.map((item, index) => (
         <Item
           children={item}
           key={index}
-          active={index === current}
           speed={speed}
           visibleItemCount={visibleItemCount}
+          position={(((index + current) % items.length) - 1) * 100}
         />
       ))}
     </div>

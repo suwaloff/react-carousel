@@ -1,25 +1,28 @@
 import { CSSProperties, ReactNode } from 'react';
-import { classNames } from '../helpers/classNames';
+import { Mods, classNames } from '../helpers/classNames';
 import './Item.css';
 
 interface ItemProps {
   children?: ReactNode;
   className?: string;
-  active?: boolean;
   speed?: number;
   visibleItemCount?: number;
+  position: number;
 }
 
-export const Item = ({ className, active, children, speed, visibleItemCount }: ItemProps) => {
+export const Item = ({ className, children, speed, visibleItemCount, position }: ItemProps) => {
   const style: CSSProperties = {
-    flexBasis: `calc(100% / ${visibleItemCount})`,
-
-    // width: `calc(100% / ${visibleItemCount})`,
-    // height: `calc(100% / ${visibleItemCount})`,
-    // transition: `opacity ${speed}ms ease-in-out, width ${speed}ms ease, height ${speed}ms ease`,
+    transform: `translateX(${position}%)`,
+    transition: `transform ${speed}ms ease-in-out, opacity ${500}ms ease-in-out `,
+    width: `calc(100% / ${visibleItemCount})`,
   };
+
+  const mod: Mods = {
+    none: position < 0 || position > 0 + (visibleItemCount - 1) * 100,
+  };
+
   return (
-    <div className={classNames('item', {}, [className])} style={style}>
+    <div className={classNames('item', mod, [className])} style={style}>
       {children}
     </div>
   );

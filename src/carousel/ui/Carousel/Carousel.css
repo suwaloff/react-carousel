@@ -5,18 +5,3 @@
   overflow: hidden;
   position: relative;
 }
-
-/* .showNeighbors {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  .ItemsList {
-    height: 80%;
-    width: 80%;
-  }
-  .Item {
-    padding-right: 10px;
-    padding-left: 10px;
-  }
-} */

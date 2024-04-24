@@ -1,5 +1,5 @@
 import { CSSProperties, useCallback, useEffect, useState, ReactNode } from 'react';
-import { Mods, classNames } from '../helpers/classNames';
+import { classNames } from '../helpers/classNames';
 import { CarouselControlColor } from '../controls/types/index';
 import { ItemsList } from '../ItemsList/ItemList';
 import { Direction } from '../types';
@@ -7,13 +7,9 @@ import { Arrows } from '../controls/Arrows/Arrows';
 import { Dots, DotsTheme } from '../controls/Dots/Dots';
 import './Carousel.css';
 
-export enum CarouselTheme {
-  SHOW_NEIGHBORS = 'showNeighbors',
-  NEIGHBORS_3D = 'neighbors-3d',
-}
-
 export interface CarouselProps {
   items: ReactNode[];
+  infinity?: boolean;
   showDots?: boolean;
   dotsColor?: CarouselControlColor;
   dotsTheme?: DotsTheme;
@@ -23,7 +19,6 @@ export interface CarouselProps {
   className?: string;
   visibleItemCount?: number;
   speed?: number;
-  theme?: CarouselTheme;
   autoplay?: boolean;
   autoplaySpeed?: number;
   width?: string | number;
@@ -40,18 +35,17 @@ export const Carousel = (props: CarouselProps) => {
     className,
     showArrows,
     showDots,
-    theme,
     speed,
     visibleItemCount,
     arrowSize,
     arrowColor,
     dotsColor,
     dotsTheme,
+    infinity,
   } = props;
-  const [current, setCurrent] = useState(0);
+  const [current, setCurrent] = useState(1);
   const [touchPosition, setTouchPosition] = useState(null);
-
-  const itemsLength = items.length - 1;
+  const clonedItems: ReactNode[] = [...items];
 
   const styles: CSSProperties = {
     width: width,
@@ -61,12 +55,12 @@ export const Carousel = (props: CarouselProps) => {
   const nextItem = useCallback(
     (direction?: Direction) => {
       if (direction === Direction.RIGHT) {
-        setCurrent(current + (visibleItemCount - 1) >= itemsLength ? 0 : current + 1);
+        setCurrent(current > 0 ? current - 1 : clonedItems.length - 1);
       } else {
-        setCurrent(current > 0 ? current - 1 : itemsLength);
+        setCurrent(current + (visibleItemCount - 1) >= clonedItems.length - 1 ? 0 : current + 1);
       }
     },
-    [current, itemsLength]
+    [current]
   );
 
   const getCurrentItem = (position?: number) => {
@@ -108,14 +102,9 @@ export const Carousel = (props: CarouselProps) => {
     setTouchPosition(null);
   };
 
-  const mods: Mods = {
-    [CarouselTheme.SHOW_NEIGHBORS]: theme === CarouselTheme.SHOW_NEIGHBORS,
-    [CarouselTheme.NEIGHBORS_3D]: theme === CarouselTheme.NEIGHBORS_3D,
-  };
-
   return (
     <div
-      className={classNames('Carousel', mods, [className])}
+      className={classNames('Carousel', {}, [className])}
       style={styles}
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
@@ -124,10 +113,11 @@ export const Carousel = (props: CarouselProps) => {
         <Arrows
           onClick={nextItem}
           current={current}
-          itemsLength={itemsLength}
+          itemsLength={clonedItems.length - 1}
           visibleItemCount={visibleItemCount}
           arrowSize={arrowSize}
           arrowColor={arrowColor}
+          infinity={infinity}
         />
       )}
       {showDots && (
@@ -140,7 +130,7 @@ export const Carousel = (props: CarouselProps) => {
         />
       )}
       <ItemsList
-        items={items}
+        items={infinity ? clonedItems : items}
         current={current}
         speed={speed}
         visibleItemCount={visibleItemCount}
