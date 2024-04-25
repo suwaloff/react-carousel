@@ -19,7 +19,7 @@ export const ItemsList = ({ items, current, speed, visibleItemCount }: ItemsList
           key={index}
           speed={speed}
           visibleItemCount={visibleItemCount}
-          position={(((index + current) % items.length) - 1) * 100}
+          position={((index - current + items.length) % items.length) * 100}
         />
       ))}
     </div>

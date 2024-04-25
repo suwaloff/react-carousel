@@ -12,6 +12,9 @@ export const App = () => {
     <div className={cls.example} style={{ backgroundColor: 'blueviolet' }}>
       3
     </div>,
+    <div className={cls.example} style={{ backgroundColor: 'gold' }}>
+      4
+    </div>,
   ];
 
   const props: CarouselProps = {
@@ -22,6 +25,7 @@ export const App = () => {
     //autoplay: true,
     autoplaySpeed: 1500,
     visibleItemCount: 1,
+    infinity: true,
   };
 
   return (

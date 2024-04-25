@@ -43,7 +43,7 @@ export const Carousel = (props: CarouselProps) => {
     dotsTheme,
     infinity,
   } = props;
-  const [current, setCurrent] = useState(1);
+  const [current, setCurrent] = useState(0);
   const [touchPosition, setTouchPosition] = useState(null);
   const clonedItems: ReactNode[] = [...items];
 
@@ -55,9 +55,9 @@ export const Carousel = (props: CarouselProps) => {
   const nextItem = useCallback(
     (direction?: Direction) => {
       if (direction === Direction.RIGHT) {
-        setCurrent(current > 0 ? current - 1 : clonedItems.length - 1);
+        setCurrent(current + (visibleItemCount - 1) === clonedItems.length - 1 ? 0 : current + 1);
       } else {
-        setCurrent(current + (visibleItemCount - 1) >= clonedItems.length - 1 ? 0 : current + 1);
+        setCurrent(current > 0 ? current - 1 : clonedItems.length - 1);
       }
     },
     [current]
