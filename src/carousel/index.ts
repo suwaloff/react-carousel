@@ -1,2 +1,2 @@
 export { Carousel, CarouselProps } from './ui/Carousel/Carousel';
-export { DotsTheme } from './ui/controls/Dots/Dots';
+export { MoveEffect, DotsTheme } from './ui/types/index';

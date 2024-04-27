@@ -23,8 +23,9 @@ export const Arrows = ({
   arrowSize,
   infinity,
 }: ArrowsProps) => {
-  const showLeftArrow: boolean = infinity || current != 0;
-  const showRightArrow: boolean = infinity || current != itemsLength - (visibleItemCount - 1);
+  const showLeftArrow: boolean = infinity || current != -1;
+  const showRightArrow: boolean = infinity || current != itemsLength - (visibleItemCount - 1) - 1;
+  console.log(current);
 
   return (
     <div className={'Arrows'}>

@@ -1,28 +1,35 @@
 import { CSSProperties, ReactNode } from 'react';
-import { Mods, classNames } from '../helpers/classNames';
+import { Mods, classNames } from '../utils/classNames';
+import { getMoveEffect } from './../utils/getMoveEffect';
+import { MoveEffect } from '../types/index';
 import './Item.css';
 
 interface ItemProps {
   children?: ReactNode;
-  className?: string;
+  moveEffect?: MoveEffect;
+  position: number;
   speed?: number;
   visibleItemCount?: number;
-  position: number;
+  slideCount?: number;
+  className?: string;
 }
 
-export const Item = ({ className, children, speed, visibleItemCount, position }: ItemProps) => {
-  const style: CSSProperties = {
-    transform: `translateX(${position}%)`,
-    transition: `transform ${speed}ms ease-in-out, opacity ${500}ms ease-in-out `,
+export const Item = (props: ItemProps) => {
+  const { position, children, moveEffect, speed, visibleItemCount, className, slideCount } = props;
+
+  const animationStyles: CSSProperties = getMoveEffect(moveEffect, speed, position, slideCount);
+
+  const itemStyle: CSSProperties = {
+    ...animationStyles,
     width: `calc(100% / ${visibleItemCount})`,
   };
 
-  const mod: Mods = {
-    none: position < 0 || position > 0 + (visibleItemCount - 1) * 100,
+  const visibilityModifier: Mods = {
+    hidden: position < -100 || position > 100,
   };
 
   return (
-    <div className={classNames('item', mod, [className])} style={style}>
+    <div className={classNames('item', visibilityModifier, [className])} style={itemStyle}>
       {children}
     </div>
   );

@@ -1,12 +1,7 @@
-import { classNames } from '../../helpers/classNames';
+import { DotsTheme } from '../../types/index';
+import { classNames } from '../../utils/classNames';
 import { CarouselControlColor } from '../types';
 import './Dots.css';
-
-export enum DotsTheme {
-  RECTANGLE = 'carousel-dots--rectangle',
-  ROUND = 'carousel-dots--round',
-  LINE = 'carousel-dots--line',
-}
 
 interface DotsProps {
   className?: string;
@@ -33,10 +28,11 @@ export const Dots = (props: DotsProps) => {
     <div className="carousel-dots">
       {dots.map((value, index) => (
         <button
-          className={classNames('dot', { ['carousel-dots--checked']: current === index }, [
-            className,
-            dotsTheme,
-          ])}
+          className={classNames(
+            'dot',
+            { ['carousel-dots--checked']: (current + 1) % dots.length === index },
+            [className, dotsTheme]
+          )}
           onClick={() => onClick(index)}
           key={index}
           style={{ backgroundColor: dotsColor }}

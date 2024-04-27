@@ -1,16 +1,19 @@
-import { ReactNode } from 'react';
+import { MoveEffect } from '../types/index';
+import { CSSProperties, ReactNode } from 'react';
 import { Item } from '../Item/Item';
 import './ItemList.css';
 
 interface ItemsListProps {
-  className?: string;
-  items?: ReactNode[];
-  current?: number;
+  items: ReactNode[];
+  current: number;
   speed?: number;
+  moveEffect?: MoveEffect;
   visibleItemCount?: number;
 }
 
-export const ItemsList = ({ items, current, speed, visibleItemCount }: ItemsListProps) => {
+export const ItemsList = (props: ItemsListProps) => {
+  const { visibleItemCount, speed, moveEffect, items, current } = props;
+
   return (
     <div className="carousel-items-list">
       {items.map((item, index) => (
@@ -19,7 +22,8 @@ export const ItemsList = ({ items, current, speed, visibleItemCount }: ItemsList
           key={index}
           speed={speed}
           visibleItemCount={visibleItemCount}
-          position={((index - current + items.length) % items.length) * 100}
+          position={(((index - current + items.length) % items.length) - 1) * 100}
+          moveEffect={moveEffect}
         />
       ))}
     </div>

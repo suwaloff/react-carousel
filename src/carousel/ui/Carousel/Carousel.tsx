@@ -1,14 +1,15 @@
-import { CSSProperties, useCallback, useEffect, useState, ReactNode } from 'react';
-import { classNames } from '../helpers/classNames';
+import { CSSProperties, useEffect, useState, ReactNode, useRef } from 'react';
+import { classNames } from '../utils/classNames';
 import { CarouselControlColor } from '../controls/types/index';
 import { ItemsList } from '../ItemsList/ItemList';
-import { Direction } from '../types';
+import { Direction, DotsTheme, MoveEffect } from '../types';
 import { Arrows } from '../controls/Arrows/Arrows';
-import { Dots, DotsTheme } from '../controls/Dots/Dots';
+import { Dots } from '../controls/Dots/Dots';
 import './Carousel.css';
 
 export interface CarouselProps {
   items: ReactNode[];
+  moveEffect?: MoveEffect;
   infinity?: boolean;
   showDots?: boolean;
   dotsColor?: CarouselControlColor;
@@ -42,8 +43,9 @@ export const Carousel = (props: CarouselProps) => {
     dotsColor,
     dotsTheme,
     infinity,
+    moveEffect,
   } = props;
-  const [current, setCurrent] = useState(0);
+  const [current, setCurrent] = useState(-1);
   const [touchPosition, setTouchPosition] = useState(null);
   const clonedItems: ReactNode[] = [...items];
 
@@ -52,16 +54,17 @@ export const Carousel = (props: CarouselProps) => {
     height: hight,
   };
 
-  const nextItem = useCallback(
-    (direction?: Direction) => {
-      if (direction === Direction.RIGHT) {
-        setCurrent(current + (visibleItemCount - 1) === clonedItems.length - 1 ? 0 : current + 1);
-      } else {
-        setCurrent(current > 0 ? current - 1 : clonedItems.length - 1);
-      }
-    },
-    [current]
-  );
+  const currentRef = useRef(-1);
+
+  const nextItem = (direction?: Direction) => {
+    if (direction === Direction.RIGHT) {
+      currentRef.current = currentRef.current < clonedItems.length - 1 ? currentRef.current + 1 : 0;
+    } else {
+      currentRef.current =
+        currentRef.current >= 0 ? currentRef.current - 1 : clonedItems.length - 1;
+    }
+    setCurrent(currentRef.current);
+  };
 
   const getCurrentItem = (position?: number) => {
     setCurrent(position);
@@ -71,9 +74,28 @@ export const Carousel = (props: CarouselProps) => {
     if (!autoplay) {
       return;
     }
-    const interval = setInterval(() => nextItem(Direction.RIGHT), autoplaySpeed);
-    return () => clearInterval(interval);
-  }, [current]);
+    let lastTime = Date.now();
+    let accumulatedTime = 0; // Накопленное время
+
+    const frame = () => {
+      const now = Date.now();
+      let deltaTime = now - lastTime;
+      lastTime = now;
+      deltaTime = Math.min(deltaTime, 500);
+      accumulatedTime += deltaTime;
+
+      if (accumulatedTime >= autoplaySpeed) {
+        nextItem(Direction.RIGHT);
+        accumulatedTime -= autoplaySpeed; // Сброс накопленного времени
+      }
+
+      requestAnimationFrame(frame);
+    };
+
+    const frameId = requestAnimationFrame(frame);
+
+    return () => cancelAnimationFrame(frameId);
+  }, [autoplay]);
 
   const handleTouchStart = (e?: React.TouchEvent) => {
     const touchDown = e.touches[0].clientX;
@@ -134,13 +156,14 @@ export const Carousel = (props: CarouselProps) => {
         current={current}
         speed={speed}
         visibleItemCount={visibleItemCount}
+        moveEffect={moveEffect}
       />
     </div>
   );
 };
 
 Carousel.defaultProps = {
-  autoplaySpeed: 4000,
+  //autoplaySpeed: 4000,
   showDots: true,
   showArrows: true,
   speed: 500,
