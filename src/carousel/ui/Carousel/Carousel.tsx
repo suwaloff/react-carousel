@@ -1,4 +1,4 @@
-import { CSSProperties, useEffect, useState, ReactNode, useRef } from 'react';
+import { useEffect, useState, ReactNode, useRef } from 'react';
 import { classNames } from '../utils/classNames';
 import { CarouselControlColor } from '../controls/types/index';
 import { ItemsList } from '../ItemsList/ItemList';
@@ -22,16 +22,12 @@ export interface CarouselProps {
   speed?: number;
   autoplay?: boolean;
   autoplaySpeed?: number;
-  width?: string | number;
-  hight?: string | number;
 }
 
 export const Carousel = (props: CarouselProps) => {
   const {
     autoplay,
     autoplaySpeed,
-    hight,
-    width,
     items,
     className,
     showArrows,
@@ -46,17 +42,10 @@ export const Carousel = (props: CarouselProps) => {
     moveEffect,
   } = props;
   const [current, setCurrent] = useState(-1);
-  const [touchPosition, setTouchPosition] = useState(null);
   const clonedItems: ReactNode[] = [...items];
-
-  const styles: CSSProperties = {
-    width: width,
-    height: hight,
-  };
-
   const currentRef = useRef(-1);
 
-  const nextItem = (direction?: Direction) => {
+  const getNextItem = (direction?: Direction) => {
     if (direction === Direction.RIGHT) {
       currentRef.current = currentRef.current < clonedItems.length - 1 ? currentRef.current + 1 : 0;
     } else {
@@ -75,7 +64,7 @@ export const Carousel = (props: CarouselProps) => {
       return;
     }
     let lastTime = Date.now();
-    let accumulatedTime = 0; // Накопленное время
+    let accumulatedTime = 0;
 
     const frame = () => {
       const now = Date.now();
@@ -85,8 +74,8 @@ export const Carousel = (props: CarouselProps) => {
       accumulatedTime += deltaTime;
 
       if (accumulatedTime >= autoplaySpeed) {
-        nextItem(Direction.RIGHT);
-        accumulatedTime -= autoplaySpeed; // Сброс накопленного времени
+        getNextItem(Direction.RIGHT);
+        accumulatedTime -= autoplaySpeed;
       }
 
       requestAnimationFrame(frame);
@@ -97,43 +86,11 @@ export const Carousel = (props: CarouselProps) => {
     return () => cancelAnimationFrame(frameId);
   }, [autoplay]);
 
-  const handleTouchStart = (e?: React.TouchEvent) => {
-    const touchDown = e.touches[0].clientX;
-
-    setTouchPosition(touchDown);
-  };
-
-  const handleTouchMove = (e?: React.TouchEvent) => {
-    if (touchPosition === null) {
-      return;
-    }
-
-    const currentPosition = e.touches[0].clientX;
-    const direction = touchPosition - currentPosition;
-
-    if (direction > 10) {
-      nextItem(Direction.RIGHT);
-      setTouchPosition(currentPosition);
-    }
-
-    if (direction < -10) {
-      nextItem(Direction.LEFT);
-      setTouchPosition(currentPosition);
-    }
-
-    setTouchPosition(null);
-  };
-
   return (
-    <div
-      className={classNames('Carousel', {}, [className])}
-      style={styles}
-      onTouchStart={handleTouchStart}
-      onTouchMove={handleTouchMove}
-    >
+    <div className={classNames('Carousel', {}, [className])}>
       {showArrows && (
         <Arrows
-          onClick={nextItem}
+          onClick={getNextItem}
           current={current}
           itemsLength={clonedItems.length - 1}
           visibleItemCount={visibleItemCount}
