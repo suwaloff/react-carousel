@@ -1,5 +1,6 @@
 import { Carousel, CarouselProps } from '@/carousel';
 import cls from '@/app/styles/index.module.scss';
+import { ArrowPosition, MoveEffect } from '@/carousel/ui/types';
 
 export const App = () => {
   const data = [
@@ -20,12 +21,14 @@ export const App = () => {
   const props: CarouselProps = {
     className: cls.carousel,
     items: data,
-    speed: 500,
+    speed: 1000,
     // showDots: false,
-    //autoplay: true,
-    autoplaySpeed: 1500,
+    // autoplay: true,
+    autoplaySpeed: 5000,
     visibleItemCount: 1,
-    infinity: true,
+    // infinity: true,
+    arrowPosition: ArrowPosition.BORDER,
+    // moveEffect: MoveEffect.INFINITY,
   };
 
   return (

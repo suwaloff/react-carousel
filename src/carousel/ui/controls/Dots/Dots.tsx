@@ -33,7 +33,7 @@ export const Dots = (props: DotsProps) => {
             { ['carousel-dots--checked']: (current + 1) % dots.length === index },
             [className, dotsTheme]
           )}
-          onClick={() => onClick(index)}
+          onClick={() => onClick(index - 1)}
           key={index}
           style={{ backgroundColor: dotsColor }}
         ></button>

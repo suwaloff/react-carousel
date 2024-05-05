@@ -1,5 +1,6 @@
+import { ArrowPosition, Direction } from '../../types';
 import { CarouselControlColor } from '../types';
-import { Direction } from '../../types';
+import { classNames } from '../../utils/classNames';
 import RightArrow from '../icons/arrow-right.svg';
 import LeftArrow from '../icons/arrow-left.svg';
 import './Arrows.css';
@@ -11,31 +12,41 @@ interface ArrowsProps {
   visibleItemCount: number;
   arrowColor?: CarouselControlColor;
   arrowSize?: number | string;
+  arrowPosition?: ArrowPosition;
   infinity?: boolean;
 }
 
-export const Arrows = ({
-  onClick,
-  current,
-  itemsLength,
-  visibleItemCount,
-  arrowColor,
-  arrowSize,
-  infinity,
-}: ArrowsProps) => {
+export const Arrows = (props: ArrowsProps) => {
+  const {
+    current,
+    itemsLength,
+    onClick,
+    visibleItemCount,
+    arrowColor,
+    arrowPosition = ArrowPosition.INSIDE,
+    arrowSize,
+    infinity,
+  } = props;
   const showLeftArrow: boolean = infinity || current != -1;
   const showRightArrow: boolean = infinity || current != itemsLength - (visibleItemCount - 1) - 1;
-  console.log(current);
 
   return (
-    <div className={'Arrows'}>
+    <div className={classNames('carousel-arrows-container', {}, [arrowPosition])}>
       {showLeftArrow && (
-        <button className={'left-arrow'} onClick={() => onClick(Direction.LEFT)}>
+        <button
+          className="left-arrow"
+          aria-label="Previous slide"
+          onClick={() => onClick(Direction.LEFT)}
+        >
           <LeftArrow width={`${arrowSize}vw`} height={`${arrowSize}vh`} fill={arrowColor} />
         </button>
       )}
       {showRightArrow && (
-        <button className={'right-arrow'} onClick={() => onClick(Direction.RIGHT)}>
+        <button
+          className="right-arrow"
+          aria-label="Next slide"
+          onClick={() => onClick(Direction.RIGHT)}
+        >
           <RightArrow width={`${arrowSize}vw`} height={`${arrowSize}vh`} fill={arrowColor} />
         </button>
       )}

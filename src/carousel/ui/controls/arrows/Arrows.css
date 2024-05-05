@@ -4,19 +4,48 @@
   top: 50%;
   transform: translateY(-50%);
   z-index: 1;
-  padding: 0px;
-  background: none;
+  padding: 0;
   border: none;
+  border-radius: 50%;
+  background: none;
   color: rgb(255, 255, 255);
   opacity: 0.6;
-  &:hover {
-    cursor: pointer;
-    opacity: 1;
-  }
 }
+
+.left-arrow:hover,
+.right-arrow:hover {
+  cursor: pointer;
+  opacity: 1;
+}
+
 .left-arrow {
-  left: 8px;
+  left: 1vw;
 }
+
 .right-arrow {
-  right: 8px;
+  right: 1vw;
+}
+
+.carousel-arrow--inside .left-arrow {
+  left: 1vw;
+}
+
+.carousel-arrow--inside .right-arrow {
+  right: 1vw;
+}
+
+.carousel-arrow--outside .left-arrow {
+  left: -7vw;
+}
+
+.carousel-arrow--outside .right-arrow {
+  right: -7vw;
+}
+
+.carousel-arrow--border .left-arrow {
+  left: -3vw;
+}
+
+.carousel-arrow--border .right-arrow {
+  right: -3vw;
 }
