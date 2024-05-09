@@ -21,12 +21,17 @@ export const getMoveEffect = (
     case MoveEffect.INFINITY:
       return {
         transform: `translateX(${position}%)`,
-        transition: `transform ${speed}ms linear, opacity ${500}ms ease-in-out `,
+        transition: `transform ${speed}ms linear, opacity ${speed}ms ease-in-out `,
+      };
+    case MoveEffect.FADE:
+      return {
+        opacity: position === 0 ? 1 : 0,
+        transition: `opacity ${speed}ms ease-in-out`,
       };
     default:
       return {
         transform: `translateX(${position}%)`,
-        transition: `transform ${speed}ms ease-in-out, opacity ${500}ms ease-in-out `,
+        transition: `transform ${speed}ms ease-in-out, opacity ${speed}ms ease-in-out `,
       };
   }
 };

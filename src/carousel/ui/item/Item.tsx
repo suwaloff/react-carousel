@@ -25,7 +25,7 @@ export const Item = (props: ItemProps) => {
   };
 
   const visibilityModifier: Mods = {
-    hidden: position < -100 || position > 100,
+    hidden: position != 0,
   };
 
   return (

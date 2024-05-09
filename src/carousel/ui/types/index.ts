@@ -5,6 +5,7 @@ export enum Direction {
 
 export enum MoveEffect {
   INFINITY = 'INFINITY',
+  FADE = 'FADE',
 }
 
 export enum ArrowPosition {
