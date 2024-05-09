@@ -20,8 +20,9 @@ export const getMoveEffect = (
   switch (moveEffect) {
     case MoveEffect.INFINITY:
       return {
+        opacity: position < 100 ? 1 : 0,
         transform: `translateX(${position}%)`,
-        transition: `transform ${speed}ms linear, opacity ${speed}ms ease-in-out `,
+        transition: `transform ${speed}ms linear`,
       };
     case MoveEffect.FADE:
       return {

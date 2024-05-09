@@ -1,5 +1,5 @@
 import { MoveEffect } from '../types/index';
-import { CSSProperties, ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { Item } from '../Item/Item';
 import './ItemList.css';
 
