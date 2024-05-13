@@ -29,8 +29,16 @@ export const getMoveEffect = (
         opacity: position === 0 ? 1 : 0,
         transition: `opacity ${speed}ms ease-in-out`,
       };
+    case MoveEffect.SCALE:
+      return {
+        opacity: position === 0 ? 1 : 0,
+        transform: `scale(${position === 0 ? 1 : 0})`,
+        transition: `transform ${speed}ms ease-in-out, opacity ${speed * 2}ms ease-in-out`,
+      };
+
     default:
       return {
+        opacity: position === 0 ? 1 : 0,
         transform: `translateX(${position}%)`,
         transition: `transform ${speed}ms ease-in-out, opacity ${speed}ms ease-in-out `,
       };

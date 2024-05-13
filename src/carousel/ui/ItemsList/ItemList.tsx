@@ -24,6 +24,7 @@ export const ItemsList = (props: ItemsListProps) => {
           visibleItemCount={visibleItemCount}
           position={(((index - current + items.length) % items.length) - 1) * 100}
           moveEffect={moveEffect}
+          slideCount={items.length}
         />
       ))}
     </div>

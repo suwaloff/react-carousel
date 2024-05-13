@@ -88,7 +88,7 @@ export const Carousel = (props: CarouselProps) => {
 
   return (
     <div className={classNames('Carousel', {}, [className])}>
-      {showArrows && (
+      {showArrows && !autoplay && (
         <Arrows
           onClick={getNextItem}
           current={current}
@@ -100,7 +100,7 @@ export const Carousel = (props: CarouselProps) => {
           arrowPosition={arrowPosition}
         />
       )}
-      {showDots && (
+      {showDots && !autoplay && (
         <Dots
           onClick={getCurrentItem}
           quantity={items.length - visibleItemCount}
@@ -126,6 +126,6 @@ Carousel.defaultProps = {
   showArrows: true,
   speed: 500,
   visibleItemCount: 1,
-  arrowSize: 8,
+  arrowSize: 7,
   arrowColor: 'white',
 };

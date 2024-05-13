@@ -8,24 +8,24 @@ import './Arrows.css';
 interface ArrowsProps {
   onClick: (direction: Direction) => void;
   current: number;
+  infinity?: boolean;
   itemsLength: number;
   visibleItemCount: number;
-  arrowColor?: CarouselControlColor;
   arrowSize?: number | string;
   arrowPosition?: ArrowPosition;
-  infinity?: boolean;
+  arrowColor?: CarouselControlColor;
 }
 
 export const Arrows = (props: ArrowsProps) => {
   const {
-    current,
-    itemsLength,
     onClick,
-    visibleItemCount,
-    arrowColor,
-    arrowPosition = ArrowPosition.INSIDE,
-    arrowSize,
+    current,
     infinity,
+    arrowSize,
+    arrowColor,
+    itemsLength,
+    visibleItemCount,
+    arrowPosition = ArrowPosition.INSIDE,
   } = props;
   const showLeftArrow: boolean = infinity || current != -1;
   const showRightArrow: boolean = infinity || current != itemsLength - (visibleItemCount - 1) - 1;
