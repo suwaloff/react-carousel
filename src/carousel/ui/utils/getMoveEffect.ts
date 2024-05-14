@@ -1,5 +1,5 @@
 import { CSSProperties } from 'react';
-import { MoveEffect } from '../types/index';
+import { Direction, MoveEffect } from '../types/index';
 
 /**
  * The `getMoveEffect` function generates CSS properties for carousel item animation.
@@ -15,12 +15,23 @@ export const getMoveEffect = (
   moveEffect: MoveEffect,
   speed: number,
   position: number,
-  slideCount?: number
+  slideCount?: number,
+  direction?: Direction
 ): CSSProperties => {
   switch (moveEffect) {
-    case MoveEffect.INFINITY:
+    case MoveEffect.PERPETUAL_AD_SCROLL:
+      if (
+        (position < 0 && direction === Direction.LEFT) ||
+        (position === (slideCount - 2) * 100 && direction === Direction.RIGHT)
+      ) {
+        return {
+          transform: `translateX(${position}%)`,
+          transition: 'none',
+          opacity: 0.6,
+        };
+      }
       return {
-        opacity: position < 100 ? 1 : 0,
+        // opacity: position < (slideCount - 2) * 100 ? 1 : 0,
         transform: `translateX(${position}%)`,
         transition: `transform ${speed}ms linear`,
       };
@@ -37,10 +48,20 @@ export const getMoveEffect = (
       };
 
     default:
+      if (
+        (position < 0 && direction === Direction.LEFT) ||
+        (position === (slideCount - 2) * 100 && direction === Direction.RIGHT)
+      ) {
+        return {
+          transform: `translateX(${position}%)`,
+          transition: 'none',
+          opacity: 0.6,
+        };
+      }
+
       return {
-        opacity: position === 0 ? 1 : 0,
         transform: `translateX(${position}%)`,
-        transition: `transform ${speed}ms ease-in-out, opacity ${speed}ms ease-in-out `,
+        transition: `transform ${speed}ms ease-in-out, opacity ${speed}ms ease-in-out`,
       };
   }
 };

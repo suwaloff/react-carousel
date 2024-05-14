@@ -1,7 +1,7 @@
 import { CSSProperties, ReactNode } from 'react';
-import { Mods, classNames } from '../utils/classNames';
+import { classNames } from '../utils/classNames';
 import { getMoveEffect } from './../utils/getMoveEffect';
-import { MoveEffect } from '../types/index';
+import { Direction, MoveEffect } from '../types/index';
 import './Item.css';
 
 interface ItemProps {
@@ -12,24 +12,36 @@ interface ItemProps {
   visibleItemCount?: number;
   slideCount?: number;
   className?: string;
+  direction?: Direction;
 }
 
 export const Item = (props: ItemProps) => {
-  const { position, children, moveEffect, speed, visibleItemCount, className, slideCount } = props;
+  const {
+    position,
+    children,
+    moveEffect,
+    speed,
+    visibleItemCount,
+    className,
+    slideCount,
+    direction,
+  } = props;
 
-  const animationStyles: CSSProperties = getMoveEffect(moveEffect, speed, position, slideCount);
+  const animationStyles: CSSProperties = getMoveEffect(
+    moveEffect,
+    speed,
+    position,
+    slideCount,
+    direction
+  );
 
   const itemStyle: CSSProperties = {
     ...animationStyles,
     width: `calc(100% / ${visibleItemCount})`,
   };
 
-  const visibilityModifier: Mods = {
-    hidden: position != 0,
-  };
-
   return (
-    <div className={classNames('item', visibilityModifier, [className])} style={itemStyle}>
+    <div className={classNames('item', {}, [className])} style={itemStyle}>
       {children}
     </div>
   );

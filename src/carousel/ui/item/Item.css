@@ -3,9 +3,4 @@
   flex-grow: 1;
   flex-shrink: 0;
   position: absolute;
-  opacity: 1;
-}
-
-.hidden {
-  opacity: 0;
 }

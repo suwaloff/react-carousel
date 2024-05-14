@@ -4,7 +4,7 @@ export enum Direction {
 }
 
 export enum MoveEffect {
-  INFINITY = 'INFINITY',
+  PERPETUAL_AD_SCROLL = ' PERPETUAL_AD_SCROLL',
   FADE = 'FADE',
   SCALE = 'SCALE',
 }

@@ -45,12 +45,15 @@ export const Carousel = (props: CarouselProps) => {
   } = props;
   const [current, setCurrent] = useState(-1);
   const currentRef = useRef(-1);
+  const directionRef = useRef(null);
 
   const getNextItem = (direction?: Direction) => {
     if (direction === Direction.RIGHT) {
       currentRef.current = currentRef.current < items.length - 1 ? currentRef.current + 1 : 0;
+      directionRef.current = Direction.RIGHT;
     } else {
       currentRef.current = currentRef.current >= 0 ? currentRef.current - 1 : items.length - 2;
+      directionRef.current = Direction.LEFT;
     }
     setCurrent(currentRef.current);
   };
@@ -115,6 +118,7 @@ export const Carousel = (props: CarouselProps) => {
         speed={speed}
         visibleItemCount={visibleItemCount}
         moveEffect={moveEffect}
+        direction={directionRef.current}
       />
     </div>
   );
@@ -122,10 +126,12 @@ export const Carousel = (props: CarouselProps) => {
 
 Carousel.defaultProps = {
   autoplaySpeed: 4000,
-  showDots: true,
+  showDots: false,
   showArrows: true,
-  speed: 500,
+  speed: 1000,
   visibleItemCount: 1,
   arrowSize: 7,
   arrowColor: 'white',
+  dotsColor: 'white',
+  dotsTheme: DotsTheme.RECTANGLE,
 };

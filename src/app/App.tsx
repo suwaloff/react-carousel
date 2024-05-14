@@ -21,13 +21,13 @@ export const App = () => {
   const props: CarouselProps = {
     className: cls.carousel,
     items: data,
-    speed: 3000,
-    autoplay: true,
-    autoplaySpeed: 3000,
-    visibleItemCount: 1,
+    speed: 1000,
+    //autoplay: true,
+    autoplaySpeed: 1000,
+    visibleItemCount: 2,
     infinity: true,
     arrowPosition: ArrowPosition.BORDER,
-    moveEffect: MoveEffect.INFINITY,
+    moveEffect: MoveEffect.PERPETUAL_AD_SCROLL,
   };
 
   return (
