@@ -8,7 +8,7 @@ import { Dots } from '../controls/Dots/Dots';
 import './Carousel.css';
 
 export interface CarouselProps {
-  items: ReactNode[];
+  items?: ReactNode[];
   moveEffect?: MoveEffect;
   infinity?: boolean;
   showDots?: boolean;
