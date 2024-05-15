@@ -9,6 +9,11 @@
 
 [![SVO0w.gif](https://s12.gifyu.com/images/SVO0w.gif)](https://gifyu.com/image/SVO0w)
 
+## About
+
+This carousel provides infinite scrolling without cloning elements, ensuring efficient memory use and performance.
+It leverages requestAnimationFrame for smooth animations, optimizing performance and reducing CPU load.
+
 ## Installation
 
 Install the package using npm:
@@ -19,8 +24,11 @@ npm i -D react-carousel-ts
 
 ## Basic Usage
 
+First, import the `Carousel` component and ensure you include the necessary CSS file for styling:
+
 ```js
 import { Carousel } from 'react-carousel-ts';
+import 'carousel.css';
 
 export const MyComponent = () => {
   const data = [
@@ -29,13 +37,26 @@ export const MyComponent = () => {
     <div className="example">3</div>,
   ];
 
-  return (
-    <div className="carousel-container">
-      <Carousel items={data} />
-    </div>
-  );
+  return <Carousel items={data} className="carousel" />;
 };
 ```
+
+To ensure the carousel displays correctly, it's important to include CSS styles for sizing, borders, and other visual aspects.
+
+```css
+.carousel {
+  height: 40vh;
+  width: 50vw;
+  border: 2px solid white;
+  border-radius: 14px;
+}
+```
+
+> [!IMPORTANT]
+>
+> - The carousel requires at least three elements to function properly with all transition effects.
+> - With only two elements, only the FADE and SCALE transition effects will function correctly.
+> - If there is only one or no elements, the carousel will not be displayed.
 
 ## Customizing Arrows and Dots
 
@@ -121,3 +142,13 @@ export const MyComponent = () => {
 | dotsTheme        |      `DotsTheme`       | `RECTANGLE` | Shape of the navigation dots. (Possible values: ROUND, RECTANGLE, LINE)      |
 | dotsColor        | `CarouselControlColor` |   `white`   | Dots color. (Possible values: Any valid CSS color value)                     |
 | className        |        `string`        |    `''`     | Additional CSS class.                                                        |
+
+## TODO
+
+- [ ] Add support for custom arrows and dots
+- [ ] Add support custom transition effects
+
+## Contact Information
+
+- Telegram: @Suwaloff
+- Gmail: suwaloff@gmail.com
