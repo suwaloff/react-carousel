@@ -7,7 +7,7 @@
 
 # Ultra-light carousel component for React
 
-[![SVO0w.gif](https://s12.gifyu.com/images/SVO0w.gif)](https://gifyu.com/image/SVO0w)
+[![Sfsb1.gif](https://s12.gifyu.com/images/Sfsb1.gif)](https://gifyu.com/image/Sfsb1)
 
 ## About
 
@@ -58,12 +58,34 @@ To ensure the carousel displays correctly, it's important to include CSS styles 
 > - With only two elements, only the FADE and SCALE transition effects will function correctly.
 > - If there is only one or no elements, the carousel will not be displayed.
 
+## Infinity scrolling
+
+To enable the infinite scrolling effect in the Carousel component, simply set the `infinity` property to true.
+
+```js
+<Carousel infinity={true} />
+```
+
+This will allow the carousel to loop through items endlessly.
+[![Sfsdh.gif](https://s12.gifyu.com/images/Sfsdh.gif)](https://gifyu.com/image/Sfsdh)
+
+## Setting the number of visible elements
+
+To control the number of items displayed at once in the Carousel, use the `visibleItemCount` property.
+
+```js
+<Carousel visibleItemCount={2} />
+```
+
+![Alt text](https://s12.gifyu.com/images/SfsvA.png 'a title')
+
 ## Customizing Arrows and Dots
 
 You can control their visibility, position, size, and color to match the design of your application.
 
 ```js
 import { Carousel, CarouselProps, ArrowPosition, DotsTheme } from 'react-carousel-ts';
+import 'carousel.css';
 
 export const MyComponent = () => {
   const data = [
@@ -73,6 +95,7 @@ export const MyComponent = () => {
   ];
 
   const props: CarouselProps = {
+    className: 'carousel',
     // The size of the arrow in vh/vw units. Default value is 8.
     arrowSize: 8,
 
@@ -92,11 +115,7 @@ export const MyComponent = () => {
     dotsColor: 'gray',
   };
 
-  return (
-    <div className="carousel-container">
-      <Carousel items={data} {...props} />
-    </div>
-  );
+  return <Carousel items={data} {...props} />;
 };
 ```
 
@@ -107,6 +126,7 @@ Currently, MoveEffect has three values: PERPETUAL_AD_SCROLL(Continuous scrolling
 
 ```js
 import { Carousel, CarouselProps, MoveEffect } from 'react-carousel-ts';
+import 'carousel.css';
 
 export const MyComponent = () => {
   const data = [
@@ -115,11 +135,7 @@ export const MyComponent = () => {
     <div className="example">3</div>,
   ];
 
-  return (
-    <div className="carousel-container">
-      <Carousel items={data} moveEffect={MoveEffect.SCALE} />
-    </div>
-  );
+  return <Carousel items={data} moveEffect={MoveEffect.SCALE} />;
 };
 ```
 
