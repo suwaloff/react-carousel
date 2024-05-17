@@ -7,7 +7,11 @@
 
 # Ultra-light carousel component for React
 
-[![Sfsb1.gif](https://s12.gifyu.com/images/Sfsb1.gif)](https://gifyu.com/image/Sfsb1)
+<p align="center">
+  <a href="https://gifyu.com/image/Sfsb1">
+    <img src="https://s12.gifyu.com/images/Sfsb1.gif"  width="500px">
+  </a>
+</p>
 
 ## About
 
@@ -67,7 +71,11 @@ To enable the infinite scrolling effect in the Carousel component, simply set th
 ```
 
 This will allow the carousel to loop through items endlessly.
-[![Sfsdh.gif](https://s12.gifyu.com/images/Sfsdh.gif)](https://gifyu.com/image/Sfsdh)
+<p align="center">
+  <a href="https://gifyu.com/image/Sfsdh">
+    <img src="https://s12.gifyu.com/images/Sfsdh.gif" width="500px">
+  </a>
+</p>
 
 ## Setting the number of visible elements
 
@@ -77,7 +85,9 @@ To control the number of items displayed at once in the Carousel, use the `visib
 <Carousel visibleItemCount={2} />
 ```
 
-![Alt text](https://s12.gifyu.com/images/SfsvA.png 'a title')
+<p align="center">
+  <img src="https://s12.gifyu.com/images/SfsvA.png"  width="500px">
+</p>
 
 ## Customizing Arrows and Dots
 
