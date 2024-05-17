@@ -90,7 +90,7 @@ export const Carousel = (props: CarouselProps) => {
   }, [autoplay]);
 
   return (
-    <div className={classNames('Carousel', {}, [className])}>
+    <div className={classNames('carousel-container', {}, [className])}>
       {showArrows && !autoplay && (
         <Arrows
           onClick={getNextItem}

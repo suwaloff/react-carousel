@@ -27,11 +27,11 @@
 }
 
 .carousel-arrow--inside .left-arrow {
-  left: 1vw;
+  left: -1vw;
 }
 
 .carousel-arrow--inside .right-arrow {
-  right: 1vw;
+  right: -1vw;
 }
 
 .carousel-arrow--outside .left-arrow {

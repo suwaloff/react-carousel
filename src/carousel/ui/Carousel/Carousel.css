@@ -1,6 +1,4 @@
-.Carousel {
-  height: 40vh;
-  width: 60vw;
+.carousel-container {
   margin: auto;
   position: relative;
 }
